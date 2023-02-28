@@ -51,6 +51,7 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                   height: 16,
                 ),
                 AppTextFiledWidget(
+                  ///......resusable widget...
                   controller: TextEditingController(),
                   hintText: 'Email',
                 ),
