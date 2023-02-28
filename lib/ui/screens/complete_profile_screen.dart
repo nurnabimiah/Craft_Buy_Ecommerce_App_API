@@ -1,4 +1,4 @@
-import 'package:craft_buy/ui/screens/verify_otp_screen.dart';
+import 'package:craft_buy/ui/screens/main_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 import '../reusable_widgets/app_elevated_button.dart';
@@ -92,10 +92,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 AppElevatedBtn(
                   text: 'Complete',
                   onTap: () {
-                    Navigator.push(
+                    Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => VerifyOtpScreen()));
+                            builder: (context) => MainBottomNavigationBar()),
+                        (route) => false);
+                    /*Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => VerifyOtpScreen()));*/
                   },
                 ),
               ],
