@@ -4,25 +4,25 @@ import 'package:flutter/material.dart';
 import '../reusable_widgets/app_elevated_button.dart';
 import '../reusable_widgets/app_textfiled_widget.dart';
 
-class EmailAuthScreen extends StatefulWidget {
-  const EmailAuthScreen({Key? key}) : super(key: key);
+class CompleteProfileScreen extends StatefulWidget {
+  const CompleteProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<EmailAuthScreen> createState() => _EmailAuthScreenState();
+  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
 }
 
-class _EmailAuthScreenState extends State<EmailAuthScreen> {
+class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 52),
+                const SizedBox(height: 46),
                 Image.asset(
                   'assests/images/logo.png',
                   width: 120,
@@ -32,7 +32,7 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                   height: 16,
                 ),
                 const Text(
-                  "Welcome Back !",
+                  "Complete Profile",
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -42,7 +42,7 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                   height: 8,
                 ),
                 const Text(
-                  "Please Enter Your Email Address",
+                  "Get Started With us with your details",
                   style: TextStyle(
                       color: Color(0XFFa6a6a6),
                       letterSpacing: 0.5,
@@ -51,16 +51,46 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                 const SizedBox(
                   height: 16,
                 ),
+
+                ///............first name......
                 AppTextFiledWidget(
-                  ///......resusable widget...
                   controller: TextEditingController(),
-                  hintText: 'Email',
+                  hintText: 'First Name',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                AppTextFiledWidget(
+                  controller: TextEditingController(),
+                  hintText: 'Last Name',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                AppTextFiledWidget(
+                  controller: TextEditingController(),
+                  hintText: 'Mobile',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                AppTextFiledWidget(
+                  controller: TextEditingController(),
+                  hintText: 'City',
+                ),
+                const SizedBox(
+                  height: 16,
+                ),
+                AppTextFiledWidget(
+                  maxLine: 4,
+                  controller: TextEditingController(),
+                  hintText: 'Shipping address',
                 ),
                 const SizedBox(
                   height: 16,
                 ),
                 AppElevatedBtn(
-                  text: 'Next',
+                  text: 'Complete',
                   onTap: () {
                     Navigator.push(
                         context,
