@@ -4,13 +4,13 @@ import '../utils/app_colors.dart';
 
 class CategoryItemWidget extends StatelessWidget {
   const CategoryItemWidget({
-    super.key,
-    required this.CategoryItemName,
+    Key? key,
+    required this.categoryItemName,
     required this.icon,
     required this.onTap,
-  });
+  }) : super(key: key);
 
-  final String CategoryItemName;
+  final String categoryItemName;
   final IconData icon;
   final VoidCallback onTap;
 
@@ -19,29 +19,29 @@ class CategoryItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(6),
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: AppColor.primaryColor.withOpacity(0.16)),
+                  color: AppColor.primaryColor.withOpacity(0.15)),
               child: Icon(
                 icon,
+                size: 32,
                 color: AppColor.primaryColor,
-                size: 40,
               ),
             ),
-            SizedBox(
-              height: 8,
+            const SizedBox(
+              height: 6,
             ),
             Text(
-              CategoryItemName,
+              categoryItemName,
               style: TextStyle(
+                  fontWeight: FontWeight.w400,
                   color: AppColor.primaryColor,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: 0.6),
+                  letterSpacing: 0.5),
             )
           ],
         ),

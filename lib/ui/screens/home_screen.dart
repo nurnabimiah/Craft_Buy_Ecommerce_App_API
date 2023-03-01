@@ -107,27 +107,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     CategoryItemWidget(
-                      CategoryItemName: 'Electronics',
+                      categoryItemName: 'Electronics',
                       icon: Icons.computer,
                       onTap: () {},
                     ),
                     CategoryItemWidget(
-                      CategoryItemName: 'Watch',
+                      categoryItemName: 'Watch',
                       icon: Icons.watch,
                       onTap: () {},
                     ),
                     CategoryItemWidget(
-                      CategoryItemName: 'Book',
+                      categoryItemName: 'Book',
                       icon: Icons.book,
                       onTap: () {},
                     ),
                     CategoryItemWidget(
-                      CategoryItemName: 'tools',
+                      categoryItemName: 'tools',
                       icon: Icons.add_business,
                       onTap: () {},
                     ),
                     CategoryItemWidget(
-                      CategoryItemName: 'Electronics',
+                      categoryItemName: 'Electronics',
                       icon: Icons.computer,
                       onTap: () {},
                     ),
@@ -144,25 +144,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTapSeeAll: () {},
               ),
               SingleChildScrollView(
+                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
                 scrollDirection: Axis.horizontal,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: const [
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                   ],
@@ -178,6 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTapSeeAll: () {},
               ),
               SingleChildScrollView(
+                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -212,6 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTapSeeAll: () {},
               ),
               SingleChildScrollView(
+                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -222,15 +224,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                     SizedBox(
-                      width: 5,
+                      width: 7,
                     ),
                     ProductItemPreviewCard(),
                   ],
