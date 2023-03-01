@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../reusable_widgets/category_item_widget.dart';
 import '../reusable_widgets/home/home_banner_slider.dart';
 import '../reusable_widgets/home/section_header.dart';
+import '../reusable_widgets/product__preview_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -89,7 +90,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 headerName: 'Categories',
                 onTapSeeAll: () {},
               ),
-              ListView.builder(
+              /*ListView.builder(
                   primary: false,
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.computer,
                       onTap: () {},
                     );
-                  }),
+                  }),*/
               SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
@@ -130,6 +131,108 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: Icons.computer,
                       onTap: () {},
                     ),
+                  ],
+                ),
+              ),
+
+              ///.........popular .........
+              const SizedBox(
+                height: 48,
+              ),
+              SectionHeader(
+                headerName: 'Popular',
+                onTapSeeAll: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                  ],
+                ),
+              ),
+
+              ///.....special............
+              const SizedBox(
+                height: 48,
+              ),
+              SectionHeader(
+                headerName: 'Special',
+                onTapSeeAll: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                  ],
+                ),
+              ),
+
+              ///............new.........
+              const SizedBox(
+                height: 48,
+              ),
+              SectionHeader(
+                headerName: 'New',
+                onTapSeeAll: () {},
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
+                    SizedBox(
+                      width: 5,
+                    ),
+                    ProductItemPreviewCard(),
                   ],
                 ),
               )
