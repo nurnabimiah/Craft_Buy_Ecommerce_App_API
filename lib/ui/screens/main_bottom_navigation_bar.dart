@@ -1,3 +1,4 @@
+import 'package:craft_buy/ui/screens/carts_screen.dart';
 import 'package:craft_buy/ui/screens/home_screen.dart';
 import 'package:craft_buy/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   final List<Widget> screens = const [
     HomeScreen(),
     ProductcategoryScreen(),
-    HomeScreen(),
+    CartsScreen(),
     HomeScreen(),
   ];
   @override
