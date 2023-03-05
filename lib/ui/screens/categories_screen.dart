@@ -1,5 +1,8 @@
 import 'package:craft_buy/ui/reusable_widgets/category_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../getx/bottom_navigation_controller.dart';
 
 class ProductcategoryScreen extends StatefulWidget {
   const ProductcategoryScreen({Key? key}) : super(key: key);
@@ -9,6 +12,8 @@ class ProductcategoryScreen extends StatefulWidget {
 }
 
 class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
+  BottomNavigationBarController controller =
+      Get.put(BottomNavigationBarController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +23,15 @@ class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
         title: const Text(
           'Categories',
           style: TextStyle(color: Colors.black54),
+        ),
+        leading: IconButton(
+          onPressed: () {
+            controller.changeIndex(0);
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black54,
+          ),
         ),
         backgroundColor: Colors.white,
       ),

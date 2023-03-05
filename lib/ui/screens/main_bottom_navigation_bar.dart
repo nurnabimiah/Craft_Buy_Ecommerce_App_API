@@ -26,25 +26,30 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: screens[controller.selectedIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.selectedIndex,
-        selectedItemColor: AppColor.primaryColor,
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        onTap: (index) {
-          controller.changeIndex(index);
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.category), label: 'Category'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: 'Cart'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.card_giftcard), label: 'Wish'),
-        ],
-      ),
+      body: GetBuilder<BottomNavigationBarController>(builder: (controller) {
+        return screens[controller.selectedIndex];
+      }),
+      bottomNavigationBar:
+          GetBuilder<BottomNavigationBarController>(builder: (_) {
+        return BottomNavigationBar(
+          currentIndex: controller.selectedIndex,
+          selectedItemColor: AppColor.primaryColor,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: true,
+          onTap: (index) {
+            controller.changeIndex(index);
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.category), label: 'Category'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart), label: 'Cart'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.card_giftcard), label: 'Wish'),
+          ],
+        );
+      }),
     );
   }
 }
