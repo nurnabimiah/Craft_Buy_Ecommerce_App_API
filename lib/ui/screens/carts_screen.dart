@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx/bottom_navigation_controller.dart';
-import '../reusable_widgets/CardProductItem.dart';
+import '../reusable_widgets/cards/card_product_item.dart';
 
 class CartsScreen extends StatefulWidget {
   const CartsScreen({Key? key}) : super(key: key);
@@ -83,80 +83,5 @@ class _CartsScreenState extends State<CartsScreen> {
             )
           ],
         ));
-  }
-}
-
-class IncDecFormFiled extends StatefulWidget {
-  const IncDecFormFiled({
-    super.key,
-    required this.controller,
-  });
-
-  @override
-  State<IncDecFormFiled> createState() => _IncDecFormFiledState();
-  final TextEditingController controller;
-}
-
-class _IncDecFormFiledState extends State<IncDecFormFiled> {
-  int currentValue = 0;
-  @override
-  void initState() {
-    super.initState();
-    widget.controller.text = currentValue.toString();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        GestureDetector(
-          onTap: () {
-            currentValue++;
-            widget.controller.text = currentValue.toString();
-          },
-          child: Container(
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-                color: AppColor.primaryColor,
-                borderRadius: BorderRadius.circular(4)),
-            child: const Icon(
-              Icons.add,
-              size: 18,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        const SizedBox(width: 2),
-        Expanded(
-          child: TextFormField(
-            textAlign: TextAlign.center,
-            controller: widget.controller,
-            readOnly: true,
-            decoration: InputDecoration(
-                border: OutlineInputBorder(borderSide: BorderSide.none)),
-          ),
-        ),
-        const SizedBox(width: 2),
-        GestureDetector(
-          onTap: () {
-            if (currentValue > 1) {
-              currentValue--;
-            }
-            widget.controller.text = currentValue.toString();
-          },
-          child: Container(
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-                color: AppColor.primaryColor,
-                borderRadius: BorderRadius.circular(4)),
-            child: Icon(
-              Icons.remove,
-              size: 18,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
-    );
   }
 }

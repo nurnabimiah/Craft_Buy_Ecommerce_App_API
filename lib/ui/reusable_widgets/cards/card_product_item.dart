@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../screens/carts_screen.dart';
-import '../utils/app_colors.dart';
+import '../../utils/app_colors.dart';
+import '../increment_decremetns_fileds.dart';
 
 class CardProductItem extends StatelessWidget {
   const CardProductItem({
@@ -11,7 +11,7 @@ class CardProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(16),
+      margin: EdgeInsets.all(20),
       elevation: 3,
       child: Row(
         children: [
@@ -33,7 +33,7 @@ class CardProductItem extends StatelessWidget {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             'Product Name',
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
@@ -46,7 +46,7 @@ class CardProductItem extends StatelessWidget {
                                 'color: black',
                                 style: TextStyle(fontSize: 13),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 12,
                               ),
                               Text(
@@ -83,9 +83,7 @@ class CardProductItem extends StatelessWidget {
                       SizedBox(
                         height: 30,
                         width: 95,
-                        child: IncDecFormFiled(
-                          controller: TextEditingController(),
-                        ),
+                        child: IncDecFormFiled(),
                       )
                     ],
                   )
