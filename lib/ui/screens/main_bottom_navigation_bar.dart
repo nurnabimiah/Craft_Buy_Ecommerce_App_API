@@ -1,5 +1,6 @@
 import 'package:craft_buy/ui/screens/carts_screen.dart';
 import 'package:craft_buy/ui/screens/home_screen.dart';
+import 'package:craft_buy/ui/screens/wish_list.dart';
 import 'package:craft_buy/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
     HomeScreen(),
     ProductcategoryScreen(),
     CartsScreen(),
-    HomeScreen(),
+    WishListScreen(),
   ];
   @override
   Widget build(BuildContext context) {

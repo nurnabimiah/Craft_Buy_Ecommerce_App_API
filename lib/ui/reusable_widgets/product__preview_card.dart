@@ -24,7 +24,7 @@ class ProductItemPreviewCard extends StatelessWidget {
           const SizedBox(
             height: 6,
           ),
-          Text(
+          const Text(
             'Product Name',
             maxLines: 2,
             style: TextStyle(
@@ -35,6 +35,7 @@ class ProductItemPreviewCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 '\$200',
