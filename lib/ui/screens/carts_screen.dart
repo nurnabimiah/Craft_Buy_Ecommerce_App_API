@@ -48,6 +48,9 @@ class _CartsScreenState extends State<CartsScreen> {
                     return CardProductItem();
                   }),
             ),
+
+            ///...........cheackout.....
+
             Container(
               padding: EdgeInsets.all(14),
               decoration: BoxDecoration(
