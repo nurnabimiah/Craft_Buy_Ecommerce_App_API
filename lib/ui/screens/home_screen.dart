@@ -80,9 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 16,
               ),
+
               HomeBannerSlider(
                   carouselController: _carouselController,
                   currentSelectedIndex: _currentSelectedIndex),
+
+              /*ProductImageSlider(carouselController: _carouselController, currentSelectedIndex: _currentSelectedIndex),*/
+
               const SizedBox(
                 height: 48,
               ),
