@@ -1,3 +1,4 @@
+import 'package:craft_buy/ui/screens/main_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,6 +10,16 @@ class SplashScreen extends StatefulWidget {
 
 //..............
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 2)).then((value) =>
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => MainBottomNavigationBar()),
+            (route) => false));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
