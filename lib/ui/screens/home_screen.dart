@@ -93,6 +93,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               GetBuilder<HomeController>(
+                ///......this home controller intstace = HomeController
+                /// ....ei builder er kaj holo jokhon notun kono value update hobe
+                ///  ....mane jokhon amra update methhod ta call kori tokhon value ta update hoy
+                ///   .....
                 builder: (homeController) {
                   if (homeController.getProgressSliderInprogress) {
                     return CircularProgressIndicator();
