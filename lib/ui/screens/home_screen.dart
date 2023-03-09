@@ -1,5 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:craft_buy/ui/getx/home_screen_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../reusable_widgets/category_item_widget.dart';
 import '../reusable_widgets/home/home_banner_slider.dart';
@@ -14,8 +16,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  /// ...........getx..........
+  HomeController homeController = Get.put(HomeController());
+
   final CarouselController _carouselController = CarouselController();
   final ValueNotifier<int> _currentSelectedIndex = ValueNotifier(0);
+
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +92,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 16,
               ),
 
-              HomeBannerSlider(
-                  carouselController: _carouselController,
-                  currentSelectedIndex: _currentSelectedIndex),
+              GetBuilder<HomeController>(
+                builder: (homeController) {
+                  if (homeController.getProgressSliderInprogress) {
+                    return CircularProgressIndicator();
+                  } else {
+                    return HomeBannerSlider(
+                      productSliderModel: homeController.productSliderModel,
+                    );
+                  }
+                },
+              ),
 
               /*ProductImageSlider(carouselController: _carouselController, currentSelectedIndex: _currentSelectedIndex),*/
 
