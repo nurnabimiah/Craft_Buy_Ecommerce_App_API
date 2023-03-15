@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:craft_buy/ui/getx/bottom_navigation_controller.dart';
 import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/getx/home_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  BottomNavigationBarController bottomNavigationController =
+      Get.put(BottomNavigationBarController());
+
   final CarouselController _carouselController = CarouselController();
   final ValueNotifier<int> _currentSelectedIndex = ValueNotifier(0);
 
@@ -109,20 +113,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ///........categories...........
               SectionHeader(
                 headerName: 'Categories',
-                onTapSeeAll: () {},
+                onTapSeeAll: () {
+                  bottomNavigationController.changeIndex(1);
+                },
               ),
-              /*ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 20,
-                  itemBuilder: (_, __) {
-                    return CategoryItemWidget(
-                      CategoryItemName: 'Electronics',
-                      icon: Icons.computer,
-                      onTap: () {},
-                    );
-                  }),*/
 
               GetBuilder<CategoryListController>(
                 builder: (conroller) {
