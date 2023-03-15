@@ -1,3 +1,4 @@
+import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/reusable_widgets/category_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,16 @@ class ProductcategoryScreen extends StatefulWidget {
 class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
   BottomNavigationBarController controller =
       Get.put(BottomNavigationBarController());
+  CategoryListController categoryListController =
+      Get.put(CategoryListController());
+
+  @override
+  void initState() {
+    categoryListController.getCategories();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,17 +46,35 @@ class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4, mainAxisSpacing: 2),
-          itemCount: 10,
-          itemBuilder: (context, index) {
-            return CategoryItemWidget(
-              categoryItemName: 'Bike',
-              icon: Icons.directions_bike,
-              onTap: () {},
+      body: GetBuilder<CategoryListController>(
+        builder: (controller) {
+          if (controller.getCategoryInprogress) {
+            Center(
+              child: CircularProgressIndicator(),
             );
-          }),
+          }
+          return RefreshIndicator(
+            onRefresh: () async {
+              controller.getCategories();
+            },
+            child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4, mainAxisSpacing: 2),
+                itemCount: controller.categoryListModel.data?.length ?? 0,
+                itemBuilder: (context, index) {
+                  return CategoryItemWidget(
+                    categoryItemName: controller
+                            .categoryListModel.data![index].categoryName ??
+                        '',
+                    image:
+                        controller.categoryListModel.data![index].categoryImg ??
+                            '',
+                    onTap: () {},
+                  );
+                }),
+          );
+        },
+      ),
     );
   }
 }

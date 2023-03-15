@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx/bottom_navigation_controller.dart';
+import '../getx/categoryl_list_controller.dart';
+import '../getx/home_screen_controller.dart';
 import 'categories_screen.dart';
 
 class MainBottomNavigationBar extends StatefulWidget {
@@ -19,6 +21,25 @@ class MainBottomNavigationBar extends StatefulWidget {
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   BottomNavigationBarController controller =
       Get.put(BottomNavigationBarController());
+
+  ///..........all of things we controll from this page
+  /// ...........it is our main bottom...poge.....
+  /// we used to get x from this page
+  ///  aita aikhane asar sobida holo circular progress indicator ta ekabar ei show hobe
+  ///  second kono page a gele seita r show hobe na
+
+  /// ...........getx..........
+  HomeController homeController = Get.put(HomeController());
+  CategoryListController categoryListController =
+      Get.put(CategoryListController());
+
+  @override
+  void initState() {
+    super.initState();
+    homeController.getProductSliderList();
+    categoryListController.getCategories();
+  }
+
   final List<Widget> screens = const [
     HomeScreen(),
     ProductcategoryScreen(),

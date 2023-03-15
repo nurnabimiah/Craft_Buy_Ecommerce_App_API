@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/getx/home_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,17 +17,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  /// ...........getx..........
-  HomeController homeController = Get.put(HomeController());
-
   final CarouselController _carouselController = CarouselController();
   final ValueNotifier<int> _currentSelectedIndex = ValueNotifier(0);
-
-  @override
-  void initState() {
-    super.initState();
-    homeController.getProductSliderList();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,6 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(
                 height: 48,
               ),
+
+              ///........categories...........
               SectionHeader(
                 headerName: 'Categories',
                 onTapSeeAll: () {},
@@ -129,37 +123,34 @@ class _HomeScreenState extends State<HomeScreen> {
                       onTap: () {},
                     );
                   }),*/
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CategoryItemWidget(
-                      categoryItemName: 'Electronics',
-                      icon: Icons.computer,
-                      onTap: () {},
-                    ),
-                    CategoryItemWidget(
-                      categoryItemName: 'Watch',
-                      icon: Icons.watch,
-                      onTap: () {},
-                    ),
-                    CategoryItemWidget(
-                      categoryItemName: 'Book',
-                      icon: Icons.book,
-                      onTap: () {},
-                    ),
-                    CategoryItemWidget(
-                      categoryItemName: 'tools',
-                      icon: Icons.add_business,
-                      onTap: () {},
-                    ),
-                    CategoryItemWidget(
-                      categoryItemName: 'Electronics',
-                      icon: Icons.computer,
-                      onTap: () {},
-                    ),
-                  ],
-                ),
+
+              GetBuilder<CategoryListController>(
+                builder: (conroller) {
+                  if (conroller.getCategoryInprogress) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              conroller.categoryListModel.data?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return CategoryItemWidget(
+                              categoryItemName: conroller.categoryListModel
+                                      .data![index].categoryName ??
+                                  '',
+                              image: conroller.categoryListModel.data![index]
+                                      .categoryImg ??
+                                  '',
+                              onTap: () {},
+                            );
+                          }),
+                    );
+                  }
+                },
               ),
 
               ///.........popular .........
