@@ -1,5 +1,6 @@
 import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/reusable_widgets/category_item_widget.dart';
+import 'package:craft_buy/ui/screens/produt_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -69,7 +70,18 @@ class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
                     image:
                         controller.categoryListModel.data![index].categoryImg ??
                             '',
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductListScreen(
+                                    categoryId:
+                                        '${controller.categoryListModel.data![index].id ?? '1'}',
+                                    categoryName: controller.categoryListModel
+                                            .data![index].categoryName ??
+                                        '',
+                                  )));
+                    },
                   );
                 }),
           );

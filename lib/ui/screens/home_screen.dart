@@ -3,6 +3,7 @@ import 'package:craft_buy/ui/getx/bottom_navigation_controller.dart';
 import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/getx/home_screen_controller.dart';
 import 'package:craft_buy/ui/getx/product_controller.dart';
+import 'package:craft_buy/ui/screens/produt_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -138,7 +139,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               image: conroller.categoryListModel.data![index]
                                       .categoryImg ??
                                   '',
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ProductListScreen(
+                                              categoryId:
+                                                  "${conroller.categoryListModel.data![index].id ?? '1'}",
+                                              categoryName: conroller
+                                                      .categoryListModel
+                                                      .data![index]
+                                                      .categoryName ??
+                                                  '',
+                                            )));
+                              },
                             );
                           }),
                     );

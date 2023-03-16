@@ -4,4 +4,6 @@ class Urls {
   static const String productCategoryListUrl = '$baseUrl/CategoryList';
   static String productByRemarksUrl(String remarks) =>
       '$baseUrl/ListProductByRemark/$remarks';
+  static String productByCategoryUrl(String categoryId) =>
+      '$baseUrl/ListProductByCategory/$categoryId';
 }

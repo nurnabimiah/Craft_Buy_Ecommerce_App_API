@@ -39,11 +39,13 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   @override
   void initState() {
     super.initState();
-    homeController.getProductSliderList();
-    categoryListController.getCategories();
-    productController.getPopularProducts();
-    productController.getSpecialProducts();
-    productController.getNewProducts();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      homeController.getProductSliderList();
+      categoryListController.getCategories();
+      productController.getPopularProducts();
+      productController.getSpecialProducts();
+      productController.getNewProducts();
+    });
   }
 
   final List<Widget> screens = const [

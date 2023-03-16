@@ -20,10 +20,12 @@ class ProductController extends GetxController {
   ProductModel popularProductModel = ProductModel();
   ProductModel specialProductModel = ProductModel();
   ProductModel newProductModel = ProductModel();
+  ProductModel productByCategoryModel = ProductModel();
 
   bool popularInProgress = false;
   bool specialInProgress = false;
   bool newInProgress = false;
+  bool productByCategoryInProgress = true;
 
   /// .......pupular.............
 
@@ -82,11 +84,11 @@ class ProductController extends GetxController {
     }
   }
 
-  /*Future<bool> getProductsByCategory(String categoryId) async {
+  Future<bool> getProductsByCategory(String categoryId) async {
     productByCategoryInProgress = true;
     update();
     final response =
-    await NetworkUtils().getMethod(Urls.productByCategoryUrl(categoryId));
+        await NetworkUtils().getMethod(Urls.productByCategoryUrl(categoryId));
     productByCategoryInProgress = false;
     if (response != null && response['msg'] == 'success') {
       productByCategoryModel = ProductModel.fromJson(response);
@@ -96,5 +98,5 @@ class ProductController extends GetxController {
       update();
       return false;
     }
-  }*/
+  }
 }
