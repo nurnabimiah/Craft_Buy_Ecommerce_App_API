@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:craft_buy/ui/getx/bottom_navigation_controller.dart';
 import 'package:craft_buy/ui/getx/categoryl_list_controller.dart';
 import 'package:craft_buy/ui/getx/home_screen_controller.dart';
+import 'package:craft_buy/ui/getx/product_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -104,8 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
 
-              /*ProductImageSlider(carouselController: _carouselController, currentSelectedIndex: _currentSelectedIndex),*/
-
               const SizedBox(
                 height: 48,
               ),
@@ -148,38 +147,36 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
               ///.........popular .........
+
               const SizedBox(
                 height: 48,
               ),
+
               SectionHeader(
                 headerName: 'Popular',
                 onTapSeeAll: () {},
               ),
-              SingleChildScrollView(
-                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: const [
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                  ],
-                ),
-              ),
+              GetBuilder<ProductController>(builder: (productController) {
+                if (productController.popularInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SizedBox(
+                  height: 150,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        productController.popularProductModel.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return ProductItemPreviewCard(
+                        productData:
+                            productController.popularProductModel.data![index],
+                      );
+                    },
+                  ),
+                );
+              }),
 
               ///.....special............
               const SizedBox(
@@ -189,32 +186,27 @@ class _HomeScreenState extends State<HomeScreen> {
                 headerName: 'Special',
                 onTapSeeAll: () {},
               ),
-              SingleChildScrollView(
-                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ProductItemPreviewCard(),
-                  ],
-                ),
-              ),
+              GetBuilder<ProductController>(builder: (productController) {
+                if (productController.specialInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SizedBox(
+                  height: 150,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        productController.specialProductModel.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return ProductItemPreviewCard(
+                        productData:
+                            productController.specialProductModel.data![index],
+                      );
+                    },
+                  ),
+                );
+              }),
 
               ///............new.........
               const SizedBox(
@@ -224,32 +216,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 headerName: 'New',
                 onTapSeeAll: () {},
               ),
-              SingleChildScrollView(
-                padding: EdgeInsets.only(left: 0, right: 0, bottom: 14),
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: const [
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    ProductItemPreviewCard(),
-                  ],
-                ),
-              )
+
+              GetBuilder<ProductController>(builder: (productController) {
+                if (productController.newInProgress) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return SizedBox(
+                  height: 150,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount:
+                        productController.newProductModel.data?.length ?? 0,
+                    itemBuilder: (context, index) {
+                      return ProductItemPreviewCard(
+                        productData:
+                            productController.newProductModel.data![index],
+                      );
+                    },
+                  ),
+                );
+              })
             ],
           ),
         ),

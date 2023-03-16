@@ -1,22 +1,22 @@
 class ProductModel {
   String? msg;
-  List<Data>? data;
+  List<ProductData>? data;
 
   ProductModel({this.msg, this.data});
 
   ProductModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ProductData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(ProductData.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['msg'] = this.msg;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['msg'] = msg;
     if (this.data != null) {
       data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
@@ -24,7 +24,7 @@ class ProductModel {
   }
 }
 
-class Data {
+class ProductData {
   int? id;
   String? title;
   String? shortDes;
@@ -39,10 +39,10 @@ class Data {
   int? brandId;
   String? createdAt;
   String? updatedAt;
-  Null? brand;
-  Null? category;
+  Brand? brand;
+  Category? category;
 
-  Data(
+  ProductData(
       {this.id,
       this.title,
       this.shortDes,
@@ -60,7 +60,7 @@ class Data {
       this.brand,
       this.category});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ProductData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     shortDes = json['short_des'];
@@ -75,8 +75,9 @@ class Data {
     brandId = json['brand_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    brand = json['brand'];
-    category = json['category'];
+    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
+    category =
+        json['category'] != null ? Category.fromJson(json['category']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -95,8 +96,74 @@ class Data {
     data['brand_id'] = brandId;
     data['created_at'] = createdAt;
     data['updated_at'] = updatedAt;
-    data['brand'] = brand;
-    data['category'] = category;
+    if (brand != null) {
+      data['brand'] = brand!.toJson();
+    }
+    if (category != null) {
+      data['category'] = category!.toJson();
+    }
+    return data;
+  }
+}
+
+class Brand {
+  int? id;
+  String? brandName;
+  String? brandImg;
+  String? createdAt;
+  String? updatedAt;
+
+  Brand(
+      {this.id, this.brandName, this.brandImg, this.createdAt, this.updatedAt});
+
+  Brand.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    brandName = json['brandName'];
+    brandImg = json['brandImg'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['brandName'] = brandName;
+    data['brandImg'] = brandImg;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
+    return data;
+  }
+}
+
+class Category {
+  int? id;
+  String? categoryName;
+  String? categoryImg;
+  String? createdAt;
+  String? updatedAt;
+
+  Category(
+      {this.id,
+      this.categoryName,
+      this.categoryImg,
+      this.createdAt,
+      this.updatedAt});
+
+  Category.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    categoryName = json['categoryName'];
+    categoryImg = json['categoryImg'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['categoryName'] = categoryName;
+    data['categoryImg'] = categoryImg;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

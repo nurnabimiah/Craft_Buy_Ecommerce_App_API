@@ -1,84 +1,107 @@
 import 'package:craft_buy/ui/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/models/product_model.dart';
 import '../utils/app_colors.dart';
 
 class ProductItemPreviewCard extends StatelessWidget {
   const ProductItemPreviewCard({
-    super.key,
-  });
+    Key? key,
+    required this.productData,
+  }) : super(key: key);
+
+  final ProductData productData;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ProductDetailsScreen()));
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(
+                /*productId: productData.id ?? 0,*/
+                ),
+          ),
+        );
       },
       child: Card(
         elevation: 3,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        margin: EdgeInsets.zero,
         child: Column(
           children: [
+            SizedBox(
+              height: 5,
+            ),
             Image.network(
-              'https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/0ae7e10a-8dca-4017-b9ed-edd2dc6276cd/air-jordan-1-low-womens-shoes-6LXJdg.png',
-              height: 100,
+              productData.image ?? '',
+              height: 80,
               width: 160,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
             const SizedBox(
               height: 6,
             ),
-            const Text(
-              'Product Name',
+            Text(
+              productData.title ?? '',
               maxLines: 2,
-              style: TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w600,
+              style: const TextStyle(
+                  fontWeight: FontWeight.w500,
                   fontSize: 13,
+                  color: Colors.black54,
                   letterSpacing: 0.4,
                   overflow: TextOverflow.ellipsis),
+            ),
+            const SizedBox(
+              height: 8,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  '\$200',
-                  style: TextStyle(color: AppColor.primaryColor),
+                  '\$${productData.price}',
+                  style: TextStyle(
+                      color: AppColor.primaryColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600),
                 ),
                 const SizedBox(
-                  width: 5,
+                  width: 8,
                 ),
-                Icon(
+                const Icon(
                   Icons.star,
                   color: Colors.amberAccent,
-                  size: 22,
+                  size: 14,
                 ),
                 Text(
-                  '4.5',
-                  style: TextStyle(color: Colors.grey),
+                  '${productData.star ?? 0.0}',
+                  style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 8,
                 ),
                 GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                        padding: const EdgeInsets.all(4.0),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: AppColor.primaryColor),
-                        child: Icon(
-                          Icons.favorite_border,
-                          size: 14,
-                          color: Colors.white,
-                        )))
+                  onTap: () {},
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                        color: AppColor.primaryColor,
+                        borderRadius: BorderRadius.circular(4)),
+                    child: const Icon(
+                      Icons.favorite_border,
+                      size: 10,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(
               height: 8,
-            )
+            ),
           ],
         ),
       ),

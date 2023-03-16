@@ -1,4 +1,4 @@
-import 'package:craft_buy/ui/reusable_widgets/product__preview_card.dart';
+/*import 'package:craft_buy/ui/reusable_widgets/product__preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,4 +50,4 @@ class _WishListScreenState extends State<WishListScreen> {
       ),
     );
   }
-}
+}*/

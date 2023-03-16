@@ -1,11 +1,12 @@
-import 'package:craft_buy/ui/reusable_widgets/product__preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../getx/bottom_navigation_controller.dart';
 
 class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({Key? key}) : super(key: key);
+  final String categoryId;
+  const ProductListScreen({Key? key, required this.categoryId})
+      : super(key: key);
 
   @override
   State<ProductListScreen> createState() => _ProductListScreenState();
@@ -35,7 +36,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: Padding(
+      /*body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -45,9 +46,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 crossAxisSpacing: 6),
             itemCount: 30,
             itemBuilder: (context, index) {
-              return ProductItemPreviewCard();
-            }),
-      ),
+              return ProductItemPreviewCard(productData:);
+            })
+      ),*/
     );
   }
 }

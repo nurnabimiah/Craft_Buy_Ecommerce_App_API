@@ -1,6 +1,6 @@
+import 'package:craft_buy/ui/getx/product_controller.dart';
 import 'package:craft_buy/ui/screens/carts_screen.dart';
 import 'package:craft_buy/ui/screens/home_screen.dart';
-import 'package:craft_buy/ui/screens/wish_list.dart';
 import 'package:craft_buy/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,9 +19,6 @@ class MainBottomNavigationBar extends StatefulWidget {
 }
 
 class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
-  BottomNavigationBarController controller =
-      Get.put(BottomNavigationBarController());
-
   ///..........all of things we controll from this page
   /// ...........it is our main bottom...poge.....
   /// we used to get x from this page
@@ -29,22 +26,31 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   ///  second kono page a gele seita r show hobe na
 
   /// ...........getx..........
+
+  BottomNavigationBarController controller =
+      Get.put(BottomNavigationBarController());
+
   HomeController homeController = Get.put(HomeController());
+
   CategoryListController categoryListController =
       Get.put(CategoryListController());
+  ProductController productController = Get.put(ProductController());
 
   @override
   void initState() {
     super.initState();
     homeController.getProductSliderList();
     categoryListController.getCategories();
+    productController.getPopularProducts();
+    productController.getSpecialProducts();
+    productController.getNewProducts();
   }
 
   final List<Widget> screens = const [
     HomeScreen(),
     ProductcategoryScreen(),
     CartsScreen(),
-    WishListScreen(),
+    //WishListScreen(),
   ];
   @override
   Widget build(BuildContext context) {
