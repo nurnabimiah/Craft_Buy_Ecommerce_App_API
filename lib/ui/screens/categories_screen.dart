@@ -40,7 +40,7 @@ class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
           onPressed: () {
             controller.changeIndex(0);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black54,
           ),
@@ -50,7 +50,7 @@ class _ProductcategoryScreenState extends State<ProductcategoryScreen> {
       body: GetBuilder<CategoryListController>(
         builder: (controller) {
           if (controller.getCategoryInprogress) {
-            Center(
+            const Center(
               child: CircularProgressIndicator(),
             );
           }
