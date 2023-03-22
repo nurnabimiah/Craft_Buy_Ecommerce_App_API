@@ -1,15 +1,15 @@
 class ProductDetailsModel {
   String? msg;
-  List<Data>? data;
+  List<ProductDetialsData>? data;
 
   ProductDetailsModel({this.msg, this.data});
 
   ProductDetailsModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <ProductDetialsData>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new ProductDetialsData.fromJson(v));
       });
     }
   }
@@ -24,7 +24,7 @@ class ProductDetailsModel {
   }
 }
 
-class Data {
+class ProductDetialsData {
   int? id;
   String? img1;
   String? img2;
@@ -38,7 +38,7 @@ class Data {
   String? updatedAt;
   Product? product;
 
-  Data(
+  ProductDetialsData(
       {this.id,
       this.img1,
       this.img2,
@@ -52,7 +52,7 @@ class Data {
       this.updatedAt,
       this.product});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  ProductDetialsData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     img1 = json['img1'];
     img2 = json['img2'];

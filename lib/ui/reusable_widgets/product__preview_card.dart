@@ -20,8 +20,8 @@ class ProductItemPreviewCard extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => ProductDetailsScreen(
-                /*productId: productData.id ?? 0,*/
-                ),
+              productId: productData.id ?? 0,
+            ),
           ),
         );
       },
