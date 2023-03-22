@@ -103,7 +103,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   Icons.star,
                                   color: Colors.amber,
                                 ),
-                                Text('4.5'),
+                                Text((productDetailsData.product?.star ?? 0.0)
+                                    .toStringAsFixed(1)),
                                 const SizedBox(
                                   width: 8,
                                 ),
@@ -271,4 +272,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       }),
     );
   }
+
+  List<Color> getColorFromString(String colors) {}
 }
