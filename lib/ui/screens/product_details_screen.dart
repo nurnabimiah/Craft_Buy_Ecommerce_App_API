@@ -58,6 +58,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           final ProductDetialsData productDetailsData =
               productDetailsController.productDetailsModel.data!.first;
 
+          final List<Color> avialAbleColor =
+              getColorFromString(productDetailsData.color ?? '');
+
+          final List<String> avilAbleSizes =
+              getSizesFromString(productDetailsData.size ?? '');
+
           return Column(
             children: [
               Expanded(
@@ -144,15 +150,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             ),
 
                             ///....................color.....................
+                            ///........not clear the concept.......
                             Row(
                               children: [
-                                for (int i = 0; i < 5; i++)
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: AppColor.primaryColor,
-                                      child: Icon(Icons.check),
+                                for (int i = 0; i < avialAbleColor.length; i++)
+
+                                  ///jokhon tap korbe selected color ta select hoye
+                                  ///jabe
+                                  GestureDetector(
+                                    onTap: () {
+                                      selectedColor = avialAbleColor[i];
+                                      setState(() {});
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: CircleAvatar(
+                                          radius: 15,
+                                          backgroundColor: avialAbleColor[i],
+                                          child:
+                                              selectedColor == avialAbleColor[i]
+                                                  ? Icon(Icons.check)
+                                                  : null),
                                     ),
                                   )
                               ],
@@ -170,25 +188,13 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 16),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-
-                            ///....................size..............
-                            const Text(
-                              'Size',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.black54,
-                                  fontWeight: FontWeight.w500),
-                            ),
 
                             SizedBox(
                               height: 8,
                             ),
                             Row(
                               children: [
-                                for (int i = 0; i < 5; i++)
+                                for (int i = 0; i < avilAbleSizes.length; i++)
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Container(
@@ -198,7 +204,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                               color: Colors.black54, width: 2),
                                           borderRadius:
                                               BorderRadius.circular(50)),
-                                      child: Text('XL'),
+                                      child: Text(avilAbleSizes[i]),
                                     ),
                                   )
                               ],
@@ -273,5 +279,34 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  List<Color> getColorFromString(String colors) {}
+  /// .............we spearate  to clor from api..........
+  /// ............we convert to hexacolor
+  /// ............every api color store in this element
+  List<Color> getColorFromString(String colors) {
+    List<Color> hexaColor = [];
+    final List<String> allColors = colors.split(',');
+    for (var element in allColors) {
+      hexaColor.add(HexColor(element));
+    }
+
+    return hexaColor;
+  }
+
+  ///..........size method create
+
+  List<String> getSizesFromString(String sizes) {
+    return sizes.split(',');
+  }
+}
+
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF$hexColor";
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
 }
