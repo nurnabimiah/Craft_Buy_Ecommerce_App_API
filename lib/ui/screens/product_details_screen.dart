@@ -1,3 +1,4 @@
+import 'package:craft_buy/ui/getx/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,6 +22,7 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   final ProductDetailsController _productDetailsController =
       Get.put(ProductDetailsController());
+  final AuthController _authController = Get.put(AuthController());
 
   Color? selectedColor;
   String? selectedSize;
@@ -297,8 +299,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     ),
                     SizedBox(
                         width: 120,
-                        child:
-                            AppElevatedBtn(text: 'Add to Cart', onTap: () {})),
+                        child: AppElevatedBtn(
+                            text: 'Add to Cart',
+                            onTap: () {
+                              final bool _authState =
+                                  _authController.cheackAuthState();
+                              if (_authState) {
+                                // add to cart
+                              }
+                              // r jodi na hoy directly redirect kore dibe
+                            })),
                   ],
                 ),
               )

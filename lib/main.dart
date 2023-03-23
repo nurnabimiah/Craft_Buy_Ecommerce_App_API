@@ -1,23 +1,26 @@
 import 'package:craft_buy/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const CraftBuyHomePage());
+main() {
+  runApp(const CraftyBayApp());
 }
 
-class CraftBuyHomePage extends StatelessWidget {
-  const CraftBuyHomePage({super.key});
+class CraftyBayApp extends StatefulWidget {
+  // context k globally use korar jonno amra navigator key ta niye si
+  static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  // This widget is the root of your application.
+  const CraftyBayApp({Key? key}) : super(key: key);
+
+  @override
+  State<CraftyBayApp> createState() => _CraftyBayAppState();
+}
+
+class _CraftyBayAppState extends State<CraftyBayApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Craft Buy',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: SplashScreen(),
+      navigatorKey: CraftyBayApp.navigatorKey,
+      home: const SplashScreen(),
     );
   }
 }
