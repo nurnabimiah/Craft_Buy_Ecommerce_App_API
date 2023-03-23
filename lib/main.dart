@@ -1,6 +1,8 @@
 import 'package:craft_buy/ui/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
+//route Mangement use korar khetre amra getMaterial ta use kori
+// stateManagement er khetre eita dorkar hoy na
 main() {
   runApp(const CraftyBayApp());
 }
