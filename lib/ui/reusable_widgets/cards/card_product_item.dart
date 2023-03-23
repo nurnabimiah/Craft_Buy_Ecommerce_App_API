@@ -83,7 +83,9 @@ class CardProductItem extends StatelessWidget {
                       SizedBox(
                         height: 30,
                         width: 95,
-                        child: IncDecFormFiled(),
+                        child: IncDecFormFiled(
+                          onChange: (newValue) {},
+                        ),
                       )
                     ],
                   )

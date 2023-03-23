@@ -5,7 +5,11 @@ import '../utils/app_colors.dart';
 class IncDecFormFiled extends StatefulWidget {
   const IncDecFormFiled({
     super.key,
+    //new add this
+    required this.onChange,
   });
+  // new add this
+  final Function(int) onChange;
 
   @override
   State<IncDecFormFiled> createState() => _IncDecFormFiledState();
@@ -18,6 +22,10 @@ class _IncDecFormFiledState extends State<IncDecFormFiled> {
   void initState() {
     super.initState();
     controller.text = currentValue.toString();
+    // new add this function
+    controller.addListener(() {
+      widget.onChange(currentValue);
+    });
   }
 
   /* void changeValue(int value) {

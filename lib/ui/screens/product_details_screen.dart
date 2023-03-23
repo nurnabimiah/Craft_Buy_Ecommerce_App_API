@@ -64,6 +64,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           final List<String> avilAbleSizes =
               getSizesFromString(productDetailsData.size ?? '');
 
+          if (totalAmount == 0) {
+            totalAmount =
+                double.parse(productDetailsData.product?.price ?? '0.0') ?? 0.0;
+          }
+
           return Column(
             children: [
               Expanded(
@@ -98,7 +103,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                                 SizedBox(
                                   width: 90,
-                                  child: IncDecFormFiled(),
+                                  child: IncDecFormFiled(
+                                    onChange: (newvalue) {
+                                      totalAmount = (double.tryParse(
+                                                  productDetailsData
+                                                          .product?.price ??
+                                                      '') ??
+                                              0) *
+                                          newvalue;
+                                      setState(() {});
+                                    },
+                                  ),
                                 ),
                               ],
                             ),
@@ -272,7 +287,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           style: TextStyle(color: Colors.black54, fontSize: 12),
                         ),
                         Text(
-                          '\$1200',
+                          '\$$totalAmount',
                           style: TextStyle(
                               color: AppColor.primaryColor,
                               fontSize: 15,
