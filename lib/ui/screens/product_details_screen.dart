@@ -181,6 +181,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             const SizedBox(
                               height: 16,
                             ),
+
+                            /// ................size..............part
+
                             const Text(
                               'Size',
                               style: TextStyle(
@@ -195,16 +198,28 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             Row(
                               children: [
                                 for (int i = 0; i < avilAbleSizes.length; i++)
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                              color: Colors.black54, width: 2),
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
-                                      child: Text(avilAbleSizes[i]),
+                                  GestureDetector(
+                                    onTap: () {
+                                      selectedSize = avilAbleSizes[i];
+                                      setState(() {});
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Container(
+                                        padding: EdgeInsets.all(8),
+                                        decoration: BoxDecoration(
+                                            color:
+                                                selectedSize == avilAbleSizes[i]
+                                                    ? AppColor.primaryColor
+                                                        .withOpacity(0.8)
+                                                    : null,
+                                            border: Border.all(
+                                                color: Colors.black54,
+                                                width: 2),
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                        child: Text(avilAbleSizes[i]),
+                                      ),
                                     ),
                                   )
                               ],
