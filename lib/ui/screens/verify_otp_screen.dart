@@ -1,18 +1,25 @@
-import 'package:craft_buy/ui/screens/complete_profile_screen.dart';
+import 'package:craft_buy/ui/getx/auth_controller.dart';
 import 'package:craft_buy/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../reusable_widgets/app_elevated_button.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
-  const VerifyOtpScreen({Key? key}) : super(key: key);
+  final String email;
+  const VerifyOtpScreen({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
 
   @override
   State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+  final TextEditingController _otpTextEdittingController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +58,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 height: 16,
               ),
               PinCodeTextField(
+                controller: _otpTextEdittingController,
                 length: 4,
                 obscureText: false,
                 animationType: AnimationType.fade,
@@ -79,15 +87,25 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               const SizedBox(
                 height: 16,
               ),
-              AppElevatedBtn(
-                text: 'Next',
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CompleteProfileScreen()));
-                },
-              ),
+              GetBuilder<AuthController>(builder: (controller) {
+                if (controller.verifyOtpInProgress) {
+                  Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                return AppElevatedBtn(
+                  text: 'Next',
+                  onTap: () {
+                    controller
+                        .vertifyOpp(
+                            widget.email, _otpTextEdittingController.text)
+                        .then((result) {
+                      if (result) {
+                      } else {}
+                    });
+                  },
+                );
+              }),
               const SizedBox(
                 height: 16,
               ),

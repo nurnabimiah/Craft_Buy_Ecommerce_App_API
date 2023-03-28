@@ -11,6 +11,7 @@ class AuthController extends GetxController {
   ///obossoi login thakte hobe
   bool authState = false;
   bool sendVerificationCodeToEmailInProgress = false;
+  bool verifyOtpInProgress = false;
   //redirectAuthticateuser mane hole aikhane unauthorize user ra dekhe
   void redirectUnAuthticateUser() {
     Navigator.push(CraftyBayApp.navigatorKey.currentContext!,
@@ -33,6 +34,34 @@ class AuthController extends GetxController {
     final response =
         await NetworkUtils().getMethod(Urls.sendOtpToEmailUrl(email));
     sendVerificationCodeToEmailInProgress = false;
+    if (response != null && response['msg'] == 'success') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // verify otp code send here
+  Future<bool> vertifyOpp(String email, String otp) async {
+    verifyOtpInProgress = true;
+    update();
+    final response =
+        await NetworkUtils().getMethod(Urls.verifyOtpUrl(email, otp));
+    verifyOtpInProgress = false;
+    if (response != null && response['msg'] == 'success') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  // readProfile send here
+  Future<bool> readProfileDetails() async {
+    verifyOtpInProgress = true;
+    update();
+    final response =
+        await NetworkUtils().getMethod(Urls.readProfileDeatailsUrl);
+    verifyOtpInProgress = false;
     if (response != null && response['msg'] == 'success') {
       return true;
     } else {
