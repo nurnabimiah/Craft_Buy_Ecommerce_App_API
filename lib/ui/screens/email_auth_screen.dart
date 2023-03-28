@@ -66,15 +66,27 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  AppElevatedBtn(
-                    text: 'Next',
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => VerifyOtpScreen()));
-                    },
-                  ),
+                  GetBuilder<AuthController>(builder: (controller) {
+                    if (controller.sendVerificationCodeToEmailInProgress) {
+                      Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return AppElevatedBtn(
+                      text: 'Next',
+                      onTap: () {
+                        authController
+                            .sendVerificationCodeToEmail(
+                                _emailEditingController.text.trim())
+                            .then((value) => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => VerifyOtpScreen())));
+
+                        /**/
+                      },
+                    );
+                  })
                 ],
               ),
             ),

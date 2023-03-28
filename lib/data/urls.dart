@@ -11,4 +11,6 @@ class Urls {
 
   static String productDetailsByIdUrl(int productId) =>
       '$baseUrl/ProductDetailsById/$productId';
+
+  static String sendOtpToEmailUrl(String email) => '$baseUrl/UserLogin/$email';
 }
