@@ -5,7 +5,7 @@ class UserDetails {
   UserDetails(this.firstName, this.lastName, this.shippingAddrees, this.email,
       this.city, this.id, this.mobile);
 
-  UserDetails fromJson(Map<String, dynamic> map) {
+  factory UserDetails.fromJson(Map<String, dynamic> map) {
     return UserDetails(map['firstName'], map['lastName'], map['id'],
         map['shippingAddrees'], map['city'], map[' email'], map['mobile']);
   }

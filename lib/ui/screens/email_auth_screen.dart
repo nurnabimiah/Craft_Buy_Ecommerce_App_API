@@ -82,7 +82,9 @@ class _EmailAuthScreenState extends State<EmailAuthScreen> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => VerifyOtpScreen(
-                                          email: '',
+                                          // j email ta nibo take oTp verify screen a diye dite hobe
+                                          email: _emailEditingController.text
+                                              .trim(),
                                         ))));
                       },
                     );

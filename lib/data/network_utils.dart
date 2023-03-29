@@ -2,9 +2,14 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:ui';
 
+import 'package:craft_buy/ui/getx/user_controller.dart';
+import 'package:get/get.dart' as gt;
 import 'package:http/http.dart';
 
 class NetworkUtils {
+  // for token
+  UserController userController = gt.Get.put(UserController());
+
   /// .............api read get method..............
   Future<dynamic> getMethod(String url, {VoidCallback? onUnauthorized}) async {
     try {
@@ -34,7 +39,10 @@ class NetworkUtils {
     try {
       Uri uri = Uri.parse(url);
       final Response response = await post(uri,
-          headers: {"Content-Type": "application/json", 'token': ''},
+          headers: {
+            "Content-Type": "application/json",
+            'token': userController.userToken ?? ''
+          },
           body: body);
       print(response.body);
       if (response.statusCode == 200) {

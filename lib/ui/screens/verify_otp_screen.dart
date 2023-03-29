@@ -1,4 +1,7 @@
 import 'package:craft_buy/ui/getx/auth_controller.dart';
+import 'package:craft_buy/ui/reusable_widgets/snackbar_widget.dart';
+import 'package:craft_buy/ui/screens/complete_profile_screen.dart';
+import 'package:craft_buy/ui/screens/main_bottom_navigation_bar.dart';
 import 'package:craft_buy/ui/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,6 +23,7 @@ class VerifyOtpScreen extends StatefulWidget {
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController _otpTextEdittingController =
       TextEditingController();
+  AuthController authController = Get.put(AuthController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,11 +101,32 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   text: 'Next',
                   onTap: () {
                     controller
-                        .vertifyOpp(
+                        .verifyOtp(
                             widget.email, _otpTextEdittingController.text)
                         .then((result) {
                       if (result) {
-                      } else {}
+                        authController.readProfileDetails().then((value) {
+                          if (value) {
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        MainBottomNavigationBar()),
+                                (route) => false);
+                          } else {
+                            // if you are not verified user, we navigate to complete profile screen
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CompleteProfileScreen()),
+                                (route) => false);
+                          }
+                        });
+                      } else {
+                        showSnackbar(
+                            context, 'oTp Verification is failed ! Try Again');
+                      }
                     });
                   },
                 );

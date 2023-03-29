@@ -1,7 +1,10 @@
+import 'package:craft_buy/data/models/read_profile_model.dart';
 import 'package:craft_buy/data/network_utils.dart';
+import 'package:craft_buy/ui/getx/user_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../data/models/user_details.dart';
 import '../../data/urls.dart';
 import '../../main.dart';
 import '../screens/email_auth_screen.dart';
@@ -12,6 +15,8 @@ class AuthController extends GetxController {
   bool authState = false;
   bool sendVerificationCodeToEmailInProgress = false;
   bool verifyOtpInProgress = false;
+  UserController userController = Get.put(UserController());
+
   //redirectAuthticateuser mane hole aikhane unauthorize user ra dekhe
   void redirectUnAuthticateUser() {
     Navigator.push(CraftyBayApp.navigatorKey.currentContext!,
@@ -34,6 +39,7 @@ class AuthController extends GetxController {
     final response =
         await NetworkUtils().getMethod(Urls.sendOtpToEmailUrl(email));
     sendVerificationCodeToEmailInProgress = false;
+    update();
     if (response != null && response['msg'] == 'success') {
       return true;
     } else {
@@ -42,13 +48,15 @@ class AuthController extends GetxController {
   }
 
   // verify otp code send here
-  Future<bool> vertifyOpp(String email, String otp) async {
+  Future<bool> verifyOtp(String email, String otp) async {
     verifyOtpInProgress = true;
     update();
     final response =
         await NetworkUtils().getMethod(Urls.verifyOtpUrl(email, otp));
     verifyOtpInProgress = false;
+    update();
     if (response != null && response['msg'] == 'success') {
+      await userController.saveUserToken(response['data']);
       return true;
     } else {
       return false;
@@ -63,7 +71,23 @@ class AuthController extends GetxController {
         await NetworkUtils().getMethod(Urls.readProfileDeatailsUrl);
     verifyOtpInProgress = false;
     if (response != null && response['msg'] == 'success') {
-      return true;
+      ReadProfileModel readProfileModel = ReadProfileModel.fromJson(response);
+      if ((readProfileModel.data?.length ?? 0) > 0) {
+        ProfileData profileData = readProfileModel.data!.first;
+        UserDetails userDetails = UserDetails(
+            profileData.firstName ?? '',
+            profileData.lastName ?? '',
+            profileData.shippingAddress ?? '',
+            profileData.email!,
+            profileData.city ?? '',
+            profileData.id!,
+            profileData.mobile ?? '');
+        userController.saveUserDetails(userDetails);
+        return true;
+      } else {
+        update();
+        return false;
+      }
     } else {
       return false;
     }
